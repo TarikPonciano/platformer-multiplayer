@@ -1,6 +1,62 @@
-[gd_scene load_steps=2 format=3 uid="uid://ssl0ef47gsd0"]
+[gd_scene load_steps=3 format=3 uid="uid://ssl0ef47gsd0"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_ygf28"]
 
+[sub_resource type="SystemFont" id="SystemFont_gv2oj"]
+font_weight = 900
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ygf28")
+
+[node name="UIMultiplayer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="UIMultiplayer"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 125.0
+
+[node name="BotaoJoin" type="Button" parent="UIMultiplayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -38.5
+offset_right = 40.0
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "JOIN"
+
+[node name="BotaoHost" type="Button" parent="UIMultiplayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 11.5
+offset_right = 40.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Host"
+
+[node name="Log" type="TextEdit" parent="."]
+modulate = Color(1, 1, 1, 0.505882)
+offset_top = 488.0
+offset_right = 280.0
+offset_bottom = 648.0
+theme_override_fonts/font = SubResource("SystemFont_gv2oj")
+editable = false
+wrap_mode = 1
+
+[connection signal="pressed" from="UIMultiplayer/Panel/BotaoJoin" to="." method="_on_botao_join_pressed"]
+[connection signal="pressed" from="UIMultiplayer/Panel/BotaoHost" to="." method="_on_botao_host_pressed"]
