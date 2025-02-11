@@ -1,12 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://ssl0ef47gsd0"]
+[gd_scene load_steps=5 format=3 uid="uid://ssl0ef47gsd0"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_ygf28"]
+[ext_resource type="PackedScene" uid="uid://bjkj3bbloegd2" path="res://player.tscn" id="2_gsnr7"]
+[ext_resource type="Texture2D" uid="uid://djpoavpyba66p" path="res://floor.jpeg" id="3_a24b5"]
 
 [sub_resource type="SystemFont" id="SystemFont_gv2oj"]
 font_weight = 900
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ygf28")
+jogador_scene = ExtResource("2_gsnr7")
+
+[node name="Floor" type="TextureRect" parent="."]
+offset_left = -1312.0
+offset_top = -776.0
+offset_right = 1326.0
+offset_bottom = 789.0
+texture = ExtResource("3_a24b5")
+stretch_mode = 1
 
 [node name="UIMultiplayer" type="Control" parent="."]
 layout_mode = 3
@@ -57,6 +68,10 @@ offset_bottom = 648.0
 theme_override_fonts/font = SubResource("SystemFont_gv2oj")
 editable = false
 wrap_mode = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("..")
 
 [connection signal="pressed" from="UIMultiplayer/Panel/BotaoJoin" to="." method="_on_botao_join_pressed"]
 [connection signal="pressed" from="UIMultiplayer/Panel/BotaoHost" to="." method="_on_botao_host_pressed"]
