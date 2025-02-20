@@ -141,7 +141,7 @@ properties/2/path = NodePath("AnimatedSprite2D:flip_h")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="player_sunny" type="CharacterBody2D"]
+[node name="player_sunny" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_jsurq")
 projectile = ExtResource("2_uk0cj")
 

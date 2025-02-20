@@ -50,7 +50,16 @@ func create_projectile():
 	#Lógica de introduzir o projétil no mundo
 	var new_projectile = projectile.instantiate()
 	#É importante alterar a posição do projetil, do contrario ele será criado na posição (0,0)
-	new_projectile.position = Vector2(self.position.x + 15, self.position.y)
+	
+	new_projectile.projectileOwner = self.name
+	
+	if $AnimatedSprite2D.flip_h == false:
+		new_projectile.direction = 1
+		new_projectile.position = Vector2(self.position.x + 55, self.position.y)
+	else:
+		new_projectile.direction = -1
+		new_projectile.position = Vector2(self.position.x - 55, self.position.y)
+		
 	#Essa variavel controla se poderemos atirar e a animação do personagem
 	shooting = true
 	#O get_parent faz com que adicionemos o projetil no Nó acima do jogador, ou seja no game2
