@@ -47,18 +47,26 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 func create_projectile():
-	
+	#Lógica de introduzir o projétil no mundo
 	var new_projectile = projectile.instantiate()
+	#É importante alterar a posição do projetil, do contrario ele será criado na posição (0,0)
 	new_projectile.position = Vector2(self.position.x + 15, self.position.y)
+	#Essa variavel controla se poderemos atirar e a animação do personagem
 	shooting = true
+	#O get_parent faz com que adicionemos o projetil no Nó acima do jogador, ou seja no game2
 	get_parent().add_child(new_projectile)
 	
+	#Lógica para resetar a animação de tiro e adicionar um delay para atirar novamente
+	#Criamos um Timer e configuramos o tempo dele
 	var cooldown = Timer.new()
 	cooldown.wait_time = 0.5
+	#Estamos fazendo a conexão de sinal similar ao que é feito na aba "Nó" do inspetor, porém indicamos qual evento está acontecendo e na sequência criamos uma função anônima que será executada ao acabar o tempo
 	cooldown.connect("timeout", func():
 		shooting = false
 		cooldown.queue_free())
+	#Na função acima é importante resetar a variavel shooting e também instruir para o timer ser deletado quando seu trabalho terminar
 	add_child(cooldown)
+	#Adicionamos o timer e depois inicializamos sua contagem
 	cooldown.start()
 	
 
@@ -67,7 +75,8 @@ func _update_animation() -> void:
 		$AnimatedSprite2D.flip_h = false
 	elif velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
-		
+	
+	#Adicionado o estado shooting para as animações. Ele vem primeiro pois esse estado deve executar independente do movimento.
 	if shooting:
 		$AnimatedSprite2D.play("shoot")
 	elif velocity.y < 0:
