@@ -51,6 +51,7 @@ func create_projectile():
 	var new_projectile = projectile.instantiate()
 	#É importante alterar a posição do projetil, do contrario ele será criado na posição (0,0)
 	
+	#Informação que determina que jogador criou a bala
 	new_projectile.projectileOwner = self.name
 	
 	if $AnimatedSprite2D.flip_h == false:
@@ -62,7 +63,7 @@ func create_projectile():
 		
 	#Essa variavel controla se poderemos atirar e a animação do personagem
 	shooting = true
-	#O get_parent faz com que adicionemos o projetil no Nó acima do jogador, ou seja no game2
+	#O get_parent faz com que adicionemos o projetil no Nó acima do jogador, ou seja no game2. O true é uma maneira de sinalizar para que o objeto seja criado com um nome que possa ser repetido.
 	get_parent().add_child(new_projectile,true)
 	
 	#Lógica para resetar a animação de tiro e adicionar um delay para atirar novamente
