@@ -12,7 +12,7 @@ script = ExtResource("1_ygf28")
 jogador_scene = ExtResource("2_gsnr7")
 
 [node name="Floor" type="TextureRect" parent="."]
-offset_left = -1312.0
+offset_left = -1280.0
 offset_top = -776.0
 offset_right = 1326.0
 offset_bottom = 789.0

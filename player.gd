@@ -26,6 +26,11 @@ func _enter_tree() -> void:
 	if is_multiplayer_authority(): #Verifica se autoridade 
 		var camera = Camera2D.new()
 		add_child(camera)
+		camera.limit_left = -1280
+		camera.limit_top = -768
+		camera.limit_right = 1280
+		camera.limit_bottom = 768
+		camera.zoom = Vector2(1, 1)
 	
 func _physics_process(delta: float) -> void:
 	if (is_multiplayer_authority()):

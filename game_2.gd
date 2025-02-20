@@ -81,7 +81,7 @@ var peer = ENetMultiplayerPeer.new()
 const ADDRESS = "127.0.0.1"
 const PORT =  3333
 @onready var log = $Control/Log
-#@onready var ui = $MultiplayerUI
+@onready var ui = $UIMultiplayer
 @export var jogador_scene : PackedScene
 
 #Exibir mensagem quando o servidor for criado e exibir mensagens sempre que
@@ -96,7 +96,7 @@ func _on_botao_join_pressed() -> void:
 	if resultado == OK:
 		multiplayer.multiplayer_peer = peer
 		log.text += "Conectado ao servidor! \n"
-		#ui.visible = false
+		ui.visible = false
 	else:
 		log.text += "Não foi possivel se conectar! Erro: "+str(resultado)+"\n"
 
@@ -108,7 +108,7 @@ func _on_botao_host_pressed() -> void:
 		multiplayer.multiplayer_peer = peer
 		multiplayer.peer_connected.connect(player_conectado)
 		log.text += "Servidor criado na porta "+str(PORT)+"!\n"
-		#ui.visible = false
+		ui.visible = false
 		#criar personagem
 		adicionar_jogador(multiplayer.get_unique_id())
 	
