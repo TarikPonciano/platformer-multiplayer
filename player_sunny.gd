@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+@export var projectile:PackedScene
+var shooting = false
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -34,11 +36,31 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		
+		#Ação para atirar
+		if Input.is_action_just_pressed("shoot") and shooting == false:
+			create_projectile()
+		
 		# Atualiza as animações
 		_update_animation()
 
 		# Movimenta o personagem
 		move_and_slide()
+		
+func create_projectile():
+	
+	var new_projectile = projectile.instantiate()
+	new_projectile.position = Vector2(self.position.x + 15, self.position.y)
+	shooting = true
+	get_parent().add_child(new_projectile)
+	
+	var cooldown = Timer.new()
+	cooldown.wait_time = 0.5
+	cooldown.connect("timeout", func():
+		shooting = false
+		cooldown.queue_free())
+	add_child(cooldown)
+	cooldown.start()
+	
 
 func _update_animation() -> void:
 	if velocity.x > 0:
@@ -46,8 +68,9 @@ func _update_animation() -> void:
 	elif velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
 		
-	
-	if velocity.y < 0:
+	if shooting:
+		$AnimatedSprite2D.play("shoot")
+	elif velocity.y < 0:
 		$AnimatedSprite2D.play("jump")
 	elif velocity.y > 0:
 		$AnimatedSprite2D.play("fall")

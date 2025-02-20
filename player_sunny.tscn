@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://lhxks5jrtopw"]
+[gd_scene load_steps=23 format=3 uid="uid://lhxks5jrtopw"]
 
 [ext_resource type="Script" path="res://player_sunny.gd" id="1_jsurq"]
 [ext_resource type="Texture2D" uid="uid://cb71p6d3sk2xd" path="res://sunny-bunny-idle.png" id="2_54ouy"]
 [ext_resource type="Texture2D" uid="uid://bjgmjncufkjso" path="res://sunny-bunny-jump.png" id="2_lg1es"]
+[ext_resource type="PackedScene" uid="uid://box208i7ow1ws" path="res://bola_de_fogo.tscn" id="2_uk0cj"]
 [ext_resource type="Texture2D" uid="uid://b5235sv2nsjvh" path="res://_0001_Layer-2.png" id="3_5v06c"]
 [ext_resource type="Texture2D" uid="uid://dutxhxib6aw1t" path="res://sunny-bunny-run.png" id="4_e3a3f"]
 
@@ -57,6 +58,10 @@ region = Rect2(136, 0, 34, 44)
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4670"]
 atlas = ExtResource("4_e3a3f")
 region = Rect2(170, 0, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7rgh"]
+atlas = ExtResource("4_e3a3f")
+region = Rect2(102, 0, 34, 44)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wpxq3"]
 animations = [{
@@ -115,6 +120,14 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7rgh")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 5.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0fsfw"]
@@ -130,6 +143,7 @@ properties/2/replication_mode = 1
 
 [node name="player_sunny" type="CharacterBody2D"]
 script = ExtResource("1_jsurq")
+projectile = ExtResource("2_uk0cj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_hi8yx")
@@ -138,7 +152,7 @@ shape = SubResource("CapsuleShape2D_hi8yx")
 scale = Vector2(2, 2)
 skew = 0.0174533
 sprite_frames = SubResource("SpriteFrames_wpxq3")
-animation = &"run"
+animation = &"shoot"
 autoplay = "idle"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
