@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://box208i7ow1ws"]
+[gd_scene load_steps=11 format=3 uid="uid://box208i7ow1ws"]
 
 [ext_resource type="Texture2D" uid="uid://ckt6tvwt7ejv1" path="res://sprites/spritesheet-boladefogo.png" id="1_8ehtv"]
 [ext_resource type="Script" path="res://bola_de_fogo.gd" id="1_fk1oc"]
@@ -49,16 +49,27 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wfdes"]
 radius = 7.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_w4noo"]
+properties/0/path = NodePath("AnimatedSprite2D:animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="BolaDeFogo" type="Area2D"]
 script = ExtResource("1_fk1oc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_043a8")
 autoplay = "default"
-frame_progress = 0.976952
+frame_progress = 0.718931
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_wfdes")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_w4noo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

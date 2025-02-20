@@ -63,7 +63,7 @@ func create_projectile():
 	#Essa variavel controla se poderemos atirar e a animação do personagem
 	shooting = true
 	#O get_parent faz com que adicionemos o projetil no Nó acima do jogador, ou seja no game2
-	get_parent().add_child(new_projectile)
+	get_parent().add_child(new_projectile,true)
 	
 	#Lógica para resetar a animação de tiro e adicionar um delay para atirar novamente
 	#Criamos um Timer e configuramos o tempo dele
