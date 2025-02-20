@@ -10,9 +10,9 @@
 radius = 17.0
 height = 88.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x24nh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i8uj"]
 atlas = ExtResource("2_lg1es")
-region = Rect2(255, 0, 85, 57)
+region = Rect2(289, 0, 34, 57)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bl0h"]
 atlas = ExtResource("2_54ouy")
@@ -62,7 +62,7 @@ region = Rect2(170, 0, 34, 44)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x24nh")
+"texture": SubResource("AtlasTexture_8i8uj")
 }],
 "loop": true,
 "name": &"fall",
@@ -138,7 +138,7 @@ shape = SubResource("CapsuleShape2D_hi8yx")
 scale = Vector2(2, 2)
 skew = 0.0174533
 sprite_frames = SubResource("SpriteFrames_wpxq3")
-animation = &"fall"
+animation = &"run"
 autoplay = "idle"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
