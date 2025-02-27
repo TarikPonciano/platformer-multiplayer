@@ -137,7 +137,15 @@ func adicionar_jogador(id_jogador):
 	novo_jogador.position = Vector2(spawnRandom.position.x, spawnRandom.position.y)
 	
 	add_child(novo_jogador)
+
+func kill_player(id_jogador):
+	rpc_id(id_jogador.to_int(), "kill_player_multiplayer", id_jogador)
 	
+@rpc("any_peer", "call_local", "reliable")
+func kill_player_multiplayer(id_jogador):
+	var player = get_node_or_null(str(id_jogador))
+	if player:
+		player.death()
 #Criar a função atualizar_log em que recebe o log.text do servidor e modifica o próprio log
 @rpc("any_peer", "call_local", "reliable")
 func atualizar_log(novo_log):
