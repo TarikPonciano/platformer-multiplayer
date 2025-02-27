@@ -4,6 +4,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @export var projectile:PackedScene
 var shooting = false
+@onready var animation = $AnimatedSprite2D
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
@@ -13,7 +14,7 @@ func _enter_tree() -> void:
 	if is_multiplayer_authority(): # Verifica se é autoridade 
 		var camera = Camera2D.new()
 		add_child(camera)
-		camera.limit_left = 0
+		camera.limit_left = -220
 		camera.limit_top = 0
 		camera.limit_right = 1152
 		camera.limit_bottom = 648
@@ -47,29 +48,13 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 func create_projectile():
-	#Lógica de introduzir o projétil no mundo
-	var new_projectile = projectile.instantiate()
-	#É importante alterar a posição do projetil, do contrario ele será criado na posição (0,0)
-	
-	#Informação que determina que jogador criou a bala
-	new_projectile.projectileOwner = self.name
-	
-	if $AnimatedSprite2D.flip_h == false:
-		new_projectile.direction = 1
-		new_projectile.position = Vector2(self.position.x + 55, self.position.y)
-	else:
-		new_projectile.direction = -1
-		new_projectile.position = Vector2(self.position.x - 55, self.position.y)
-		
-	#Essa variavel controla se poderemos atirar e a animação do personagem
-	shooting = true
-	#O get_parent faz com que adicionemos o projetil no Nó acima do jogador, ou seja no game2. O true é uma maneira de sinalizar para que o objeto seja criado com um nome que possa ser repetido.
-	get_parent().add_child(new_projectile,true)
+
+	rpc_id(1, "create_projectile_multiplayer", animation.flip_h, self.position)
 	
 	#Lógica para resetar a animação de tiro e adicionar um delay para atirar novamente
 	#Criamos um Timer e configuramos o tempo dele
 	var cooldown = Timer.new()
-	cooldown.wait_time = 0.1
+	cooldown.wait_time = 1
 	#Estamos fazendo a conexão de sinal similar ao que é feito na aba "Nó" do inspetor, porém indicamos qual evento está acontecendo e na sequência criamos uma função anônima que será executada ao acabar o tempo
 	cooldown.connect("timeout", func():
 		shooting = false
@@ -97,3 +82,30 @@ func _update_animation() -> void:
 		$AnimatedSprite2D.play("run")
 	else:
 		$AnimatedSprite2D.play("idle")
+
+
+func death():
+	if is_multiplayer_authority():
+		print("Death Rodou")
+		var spawns = get_parent().get_node("SpawnPoints").get_children()
+		var random = RandomNumberGenerator.new()
+		var spawnRandom = spawns[random.randi_range(0, spawns.size() - 1)]
+		
+		self.position = spawnRandom.position
+
+@rpc("any_peer", "call_local", "reliable")
+func create_projectile_multiplayer(direcao, posicao):
+	var novoProjetil = projectile.instantiate()
+	
+	novoProjetil.projectileOwner = str(multiplayer.get_remote_sender_id())
+	
+	if direcao == false:
+		novoProjetil.direction = 1
+		novoProjetil.position = Vector2(posicao.x + 55, posicao.y)
+	elif direcao == true:
+		novoProjetil.direction = -1
+		novoProjetil.position = Vector2(posicao.x - 55, posicao.y)
+		
+	get_parent().add_child(novoProjetil, true)
+	
+		

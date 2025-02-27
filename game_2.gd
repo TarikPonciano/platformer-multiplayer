@@ -84,6 +84,8 @@ const PORT =  3333
 @onready var ui = $UIMultiplayer
 @export var jogador_scene : PackedScene
 
+
+
 #Exibir mensagem quando o servidor for criado e exibir mensagens sempre que
 #um usuário se conectar
 #Esconder menu de Multiplayer ao se conectar ou criar servidor com sucesso
@@ -128,6 +130,12 @@ func player_conectado(id_jogador):
 func adicionar_jogador(id_jogador):
 	var novo_jogador = jogador_scene.instantiate()
 	novo_jogador.name = str(id_jogador) 
+	var spawns = get_node("SpawnPoints").get_children()
+	
+	var random = RandomNumberGenerator.new()
+	var spawnRandom = spawns[random.randi_range(0, spawns.size() - 1)]
+	novo_jogador.position = Vector2(spawnRandom.position.x, spawnRandom.position.y)
+	
 	add_child(novo_jogador)
 	
 #Criar a função atualizar_log em que recebe o log.text do servidor e modifica o próprio log

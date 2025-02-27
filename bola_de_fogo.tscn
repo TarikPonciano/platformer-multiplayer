@@ -56,6 +56,12 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:projectileOwner")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="BolaDeFogo" type="Area2D"]
 script = ExtResource("1_fk1oc")
