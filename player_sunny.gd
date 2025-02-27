@@ -69,7 +69,7 @@ func create_projectile():
 	#Lógica para resetar a animação de tiro e adicionar um delay para atirar novamente
 	#Criamos um Timer e configuramos o tempo dele
 	var cooldown = Timer.new()
-	cooldown.wait_time = 0.5
+	cooldown.wait_time = 0.1
 	#Estamos fazendo a conexão de sinal similar ao que é feito na aba "Nó" do inspetor, porém indicamos qual evento está acontecendo e na sequência criamos uma função anônima que será executada ao acabar o tempo
 	cooldown.connect("timeout", func():
 		shooting = false

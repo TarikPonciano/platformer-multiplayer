@@ -1,11 +1,11 @@
 [gd_scene load_steps=23 format=3 uid="uid://lhxks5jrtopw"]
 
 [ext_resource type="Script" path="res://player_sunny.gd" id="1_jsurq"]
-[ext_resource type="Texture2D" uid="uid://cb71p6d3sk2xd" path="res://sunny-bunny-idle.png" id="2_54ouy"]
-[ext_resource type="Texture2D" uid="uid://bjgmjncufkjso" path="res://sunny-bunny-jump.png" id="2_lg1es"]
+[ext_resource type="Texture2D" uid="uid://cb71p6d3sk2xd" path="res://sprites/sunny-bunny-idle.png" id="2_54ouy"]
+[ext_resource type="Texture2D" uid="uid://bjgmjncufkjso" path="res://sprites/sunny-bunny-jump.png" id="2_lg1es"]
 [ext_resource type="PackedScene" uid="uid://box208i7ow1ws" path="res://bola_de_fogo.tscn" id="2_uk0cj"]
-[ext_resource type="Texture2D" uid="uid://b5235sv2nsjvh" path="res://_0001_Layer-2.png" id="3_5v06c"]
-[ext_resource type="Texture2D" uid="uid://dutxhxib6aw1t" path="res://sunny-bunny-run.png" id="4_e3a3f"]
+[ext_resource type="Texture2D" uid="uid://b5235sv2nsjvh" path="res://sprites/_0001_Layer-2.png" id="3_5v06c"]
+[ext_resource type="Texture2D" uid="uid://dutxhxib6aw1t" path="res://sprites/sunny-bunny-run.png" id="4_e3a3f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hi8yx"]
 radius = 17.0
@@ -140,6 +140,9 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("AnimatedSprite2D:flip_h")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("MultiplayerSynchronizer:process_mode")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="player_sunny" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_jsurq")

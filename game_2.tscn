@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=4 uid="uid://bbksgw78drk8c"]
 
 [ext_resource type="Script" path="res://game_2.gd" id="1_hy7k0"]
-[ext_resource type="Texture2D" uid="uid://ch8vq67pow2wo" path="res://tileset.png" id="2_g0ald"]
+[ext_resource type="Texture2D" uid="uid://ch8vq67pow2wo" path="res://sprites/tileset.png" id="2_g0ald"]
 [ext_resource type="PackedScene" uid="uid://lhxks5jrtopw" path="res://player_sunny.tscn" id="2_qmlfg"]
-[ext_resource type="Texture2D" uid="uid://bqmwyiw66w6o0" path="res://sky.png" id="3_y7mcy"]
+[ext_resource type="Texture2D" uid="uid://bqmwyiw66w6o0" path="res://sprites/sky.png" id="3_y7mcy"]
 
 [sub_resource type="SystemFont" id="SystemFont_p16gf"]
 font_weight = 900
