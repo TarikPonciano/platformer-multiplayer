@@ -35,8 +35,8 @@ func _on_body_entered(body: Node2D) -> void:
 	# Colisão com jogador. Primeiro checamos se o objeto com que a bala colidiu faz parte do grupo de jogadores
 	# Depois checamos se o corpo jogador que colidiu é diferente do jogador que gerou a bala.
 	# Destruímos o jogador e a bala. Essa lógica garante que só é possível afetar inimigos com nossa própria bala.
-	if body.is_in_group("player"):
-		if body.name != projectileOwner and is_multiplayer_authority():
+	if body.is_in_group("player") and multiplayer.get_unique_id() == 1:
+		if body.name != projectileOwner and body.animation.animation != "death":
 			print("Alvo do Projetil: ",body.name)
 			print("Dono do Projetil:",self.projectileOwner)
 			get_parent().kill_player(body.name)

@@ -215,6 +215,7 @@ offset_right = 40.0
 offset_bottom = 528.0
 
 [node name="Log" type="TextEdit" parent="Control"]
+visible = false
 modulate = Color(1, 1, 1, 0.505882)
 layout_mode = 0
 offset_right = 280.0
