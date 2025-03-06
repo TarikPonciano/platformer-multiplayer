@@ -83,8 +83,15 @@ const PORT =  3333
 @onready var log = $Control/Log
 @onready var ui = $UIMultiplayer
 @export var jogador_scene : PackedScene
+@onready var campoNome = $UIMultiplayer/Panel/LineEdit
+var scores = {}
 
 
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("ver_scores"):
+		$HUD/LeaderBoard.visible = true
+	else:
+		$HUD/LeaderBoard.visible = false
 
 #Exibir mensagem quando o servidor for criado e exibir mensagens sempre que
 #um usuário se conectar
@@ -128,6 +135,7 @@ func player_conectado(id_jogador):
 	adicionar_jogador(id_jogador)
 	
 func adicionar_jogador(id_jogador):
+	scores[id_jogador] = {"nome": "Anônimo", "kills":0, "deaths":0}
 	var novo_jogador = jogador_scene.instantiate()
 	novo_jogador.name = str(id_jogador) 
 	
@@ -139,9 +147,27 @@ func adicionar_jogador(id_jogador):
 	#novo_jogador.position = Vector2(spawnRandom.position.x, spawnRandom.position.y)
 	
 	add_child(novo_jogador)
+	
+	atualizar_leaderboard()
 
-func kill_player(id_jogador):
-	rpc_id(id_jogador.to_int(), "kill_player_multiplayer", id_jogador)
+func update_names(id_jogador, nome_jogador):
+	scores[id_jogador]["nome"] = nome_jogador
+	atualizar_leaderboard()
+	
+func atualizar_leaderboard():
+	$HUD/LeaderBoard.text = "LEADERBOARD\n\n"
+	$HUD/LeaderBoard.text += "NOME - KILLS - DEATHS\n\n"
+	
+	for key in scores:
+		$HUD/LeaderBoard.text += str(scores[key]["nome"]) +" - "+str(scores[key]["kills"])+" - "+str(scores[key]["deaths"])+"\n"
+	
+	rpc("atualizar_leaderboard_multiplayer", $HUD/LeaderBoard.text)
+	
+func kill_player(id_vitima:String, id_killer:String):
+	rpc_id(id_vitima.to_int(), "kill_player_multiplayer", id_vitima)
+	scores[id_vitima.to_int()]["deaths"] += 1
+	scores[id_killer.to_int()]["kills"] += 1
+	atualizar_leaderboard()
 	
 @rpc("any_peer", "call_local", "reliable")
 func kill_player_multiplayer(id_jogador):
@@ -152,3 +178,7 @@ func kill_player_multiplayer(id_jogador):
 @rpc("any_peer", "call_local", "reliable")
 func atualizar_log(novo_log):
 	log.text = novo_log
+	
+@rpc("any_peer", "call_local", "reliable")
+func atualizar_leaderboard_multiplayer(novo_leaderboard):
+	$HUD/LeaderBoard.text = novo_leaderboard

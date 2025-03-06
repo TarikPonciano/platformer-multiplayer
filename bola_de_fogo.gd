@@ -39,6 +39,6 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.name != projectileOwner and body.animation.animation != "death":
 			print("Alvo do Projetil: ",body.name)
 			print("Dono do Projetil:",self.projectileOwner)
-			get_parent().kill_player(body.name)
+			get_parent().kill_player(body.name, self.projectileOwner)
 			self.queue_free()
 			

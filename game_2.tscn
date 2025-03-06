@@ -169,8 +169,8 @@ offset_bottom = 648.0
 
 [node name="Panel" type="Panel" parent="UIMultiplayer"]
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 125.0
+offset_right = 284.0
+offset_bottom = 200.0
 
 [node name="BotaoJoin" type="Button" parent="UIMultiplayer/Panel"]
 layout_mode = 1
@@ -180,9 +180,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -40.0
-offset_top = -38.5
+offset_top = -71.0
 offset_right = 40.0
-offset_bottom = -7.5
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "JOIN"
@@ -195,12 +195,27 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -40.0
-offset_top = 11.5
+offset_top = -21.0
 offset_right = 40.0
-offset_bottom = 42.5
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Host"
+
+[node name="LineEdit" type="LineEdit" parent="UIMultiplayer/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -69.0
+offset_top = -69.0
+offset_right = 78.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Digite seu nome"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player_sunny.tscn", "res://bola_de_fogo.tscn")
@@ -242,6 +257,32 @@ position = Vector2(803, 553)
 
 [node name="Spawn4" type="Marker2D" parent="SpawnPoints" groups=["spawn"]]
 position = Vector2(1092, 556)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="LeaderBoard" type="TextEdit" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.5
+offset_top = -157.0
+offset_right = 166.5
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
 
 [connection signal="pressed" from="UIMultiplayer/Panel/BotaoJoin" to="." method="_on_botao_join_pressed"]
 [connection signal="pressed" from="UIMultiplayer/Panel/BotaoHost" to="." method="_on_botao_host_pressed"]

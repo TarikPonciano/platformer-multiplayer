@@ -207,12 +207,15 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("CollisionShape2D:disabled")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("Label:text")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="SystemFont" id="SystemFont_1qcyg"]
 
 [sub_resource type="Theme" id="Theme_jkwpe"]
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
-Label/constants/outline_size = 1
+Label/constants/outline_size = 3
 Label/font_sizes/font_size = 16
 Label/fonts/font = SubResource("SystemFont_1qcyg")
 

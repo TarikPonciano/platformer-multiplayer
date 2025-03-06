@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -400.0
 var shooting = false
 var cooldown_shoot = false
 @onready var animation = $AnimatedSprite2D
+@onready var rotulo = $Label
 
 
 func _enter_tree() -> void:
@@ -14,7 +15,7 @@ func _enter_tree() -> void:
 	#set_multiplayer_authority(get_tree().multiplayer.local_peer.id)
 	
 	if is_multiplayer_authority(): # Verifica se é autoridade 
-		$Label.text = self.name
+
 		var camera = Camera2D.new()
 		add_child(camera)
 		camera.limit_left = -220
@@ -25,6 +26,10 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if is_multiplayer_authority():
+		rotulo.text = str(get_parent().campoNome.text)
+		if rotulo.text == "":
+			rotulo.text = "Anônimo"
+		rpc_id(1, "update_names", rotulo.text)
 		var spawns = get_parent().get_node("SpawnPoints").get_children()
 		var random = RandomNumberGenerator.new()
 		var spawnRandom = spawns[random.randi_range(0, spawns.size() - 1)]
@@ -140,4 +145,8 @@ func create_projectile_multiplayer(direcao, posicao):
 		
 	get_parent().add_child(novoProjetil, true)
 	
-		
+
+@rpc("any_peer", "call_local", "reliable")
+func update_names(novo_nome):
+	get_parent().update_names(multiplayer.get_remote_sender_id(),novo_nome)
+	
