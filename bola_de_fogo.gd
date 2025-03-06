@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var animation = $AnimatedSprite2D
-const SPEED = 100
+const SPEED = 300
 var direction = 1 # Variável que define a direção do movimento e da animação
 @export var projectileOwner:String # Define o dono da bala
 

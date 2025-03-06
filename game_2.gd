@@ -78,7 +78,7 @@
 extends Node2D
 
 var peer = ENetMultiplayerPeer.new()
-const ADDRESS = "10.31.0.38"
+const ADDRESS = "127.0.0.1"
 const PORT =  3333
 @onready var log = $Control/Log
 @onready var ui = $UIMultiplayer
