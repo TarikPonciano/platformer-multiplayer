@@ -1,0 +1,297 @@
+[gd_scene load_steps=28 format=3 uid="uid://05bbf3dul0wl"]
+
+[ext_resource type="Script" path="res://cenas/menu.gd" id="1_58bv0"]
+[ext_resource type="Texture2D" uid="uid://g8oks0qjuuap" path="res://sprites/Spritesheet-Foxy.png" id="1_aed00"]
+[ext_resource type="Texture2D" uid="uid://cb71p6d3sk2xd" path="res://sprites/sunny-bunny-idle.png" id="1_df1kj"]
+[ext_resource type="Texture2D" uid="uid://dutxhxib6aw1t" path="res://sprites/sunny-bunny-run.png" id="2_dw386"]
+
+[sub_resource type="Theme" id="Theme_mpsp6"]
+Button/font_sizes/font_size = 24
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_placeholder_color = Color(0.619122, 0.123551, 0.0770268, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnie1"]
+atlas = ExtResource("1_aed00")
+region = Rect2(0, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c3mo"]
+atlas = ExtResource("1_aed00")
+region = Rect2(33, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vuj7"]
+atlas = ExtResource("1_aed00")
+region = Rect2(66, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uasvg"]
+atlas = ExtResource("1_aed00")
+region = Rect2(99, 0, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxxp5"]
+atlas = ExtResource("1_aed00")
+region = Rect2(0, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rea87"]
+atlas = ExtResource("1_aed00")
+region = Rect2(33, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrcwt"]
+atlas = ExtResource("1_aed00")
+region = Rect2(66, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0qrm"]
+atlas = ExtResource("1_aed00")
+region = Rect2(99, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udkci"]
+atlas = ExtResource("1_aed00")
+region = Rect2(132, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45wly"]
+atlas = ExtResource("1_aed00")
+region = Rect2(165, 32, 33, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_724kd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnie1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c3mo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vuj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uasvg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxxp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rea87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrcwt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0qrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udkci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45wly")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi71a"]
+atlas = ExtResource("1_df1kj")
+region = Rect2(0, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thfar"]
+atlas = ExtResource("1_df1kj")
+region = Rect2(24, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k83e6"]
+atlas = ExtResource("1_df1kj")
+region = Rect2(48, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31n80"]
+atlas = ExtResource("1_df1kj")
+region = Rect2(72, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1um4p"]
+atlas = ExtResource("2_dw386")
+region = Rect2(0, 0, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vohk"]
+atlas = ExtResource("2_dw386")
+region = Rect2(34, 0, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ao65l"]
+atlas = ExtResource("2_dw386")
+region = Rect2(68, 0, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7wt2"]
+atlas = ExtResource("2_dw386")
+region = Rect2(102, 0, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4kau"]
+atlas = ExtResource("2_dw386")
+region = Rect2(136, 0, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbtd6"]
+atlas = ExtResource("2_dw386")
+region = Rect2(170, 0, 34, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yqrxh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi71a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thfar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k83e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31n80")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1um4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vohk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao65l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7wt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4kau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbtd6")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_mpsp6")
+script = ExtResource("1_58bv0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 649.0
+
+[node name="Titulo2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -143.0
+offset_top = 136.0
+offset_right = 142.0
+offset_bottom = 176.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Escolha seu Personagem"
+
+[node name="Titulo" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -255.0
+offset_top = 40.0
+offset_right = 274.0
+offset_bottom = 107.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Platformer Multiplayer"
+
+[node name="Host" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 51.5
+offset_right = 97.0
+offset_bottom = 115.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "HOST"
+
+[node name="Join" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 163.5
+offset_right = 97.0
+offset_bottom = 227.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "JOIN"
+
+[node name="CampoNome" type="LineEdit" parent="Panel"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 288.0
+offset_right = 704.0
+offset_bottom = 336.0
+placeholder_text = "Digite seu nome"
+
+[node name="BotaoFoxy" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 192.0
+offset_right = 784.0
+offset_bottom = 256.0
+text = "Foxy"
+alignment = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/BotaoFoxy"]
+position = Vector2(112, 32)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_724kd")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.900297
+
+[node name="BotaoSunny" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 192.0
+offset_right = 512.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Sunny"
+alignment = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/BotaoSunny"]
+position = Vector2(112, 32)
+sprite_frames = SubResource("SpriteFrames_yqrxh")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0963038
+
+[connection signal="mouse_entered" from="Panel/BotaoFoxy" to="." method="_on_botao_foxy_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/BotaoFoxy" to="." method="_on_botao_foxy_mouse_exited"]
+[connection signal="pressed" from="Panel/BotaoFoxy" to="." method="_on_botao_foxy_pressed"]
+[connection signal="mouse_entered" from="Panel/BotaoSunny" to="." method="_on_botao_sunny_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/BotaoSunny" to="." method="_on_botao_sunny_mouse_exited"]
+[connection signal="pressed" from="Panel/BotaoSunny" to="." method="_on_botao_sunny_pressed"]

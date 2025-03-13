@@ -130,7 +130,7 @@ func _on_botao_host_pressed() -> void:
 	
 	else:
 		log.text += "Erro ao criar servidor! Código do erro: "+str(resultado) +"\n"
-		
+	
 	
 #Na função player_conectado realizar uma chamada rpc, para a função atualizar_log
 #Deve rodar o adicionar_jogador
