@@ -77,20 +77,29 @@
 
 extends Node2D
 
-var peer = ENetMultiplayerPeer.new()
-const ADDRESS = "127.0.0.1"
-const PORT =  3333
+#var peer = ENetMultiplayerPeer.new()
+#const ADDRESS = "127.0.0.1"
+#const PORT =  3333
 @onready var log = $Control/Log
 @onready var ui = $UIMultiplayer
-@export var jogador_scene : PackedScene
+@export var scene_sunny : PackedScene
+@export var scene_foxy : PackedScene
 @onready var campoNome = $UIMultiplayer/Panel/LineEdit
 var scores = {}
 
 @onready var audio_player = $som_ambiente
 var jogador
 
+func _ready() -> void:
+	if (multiplayer.get_unique_id() == 1):
+		adicionar_jogador(1)
+		#multiplayer.peer_connected.connect(player_conectado)
+	
+
 
 func _process(delta: float) -> void:
+	if Multiplayer_Loader.criarJogador != 0:
+		adicionar_jogador(Multiplayer_Loader.criarJogador)
 	if Input.is_action_pressed("ver_scores"):
 		$HUD/LeaderBoard.visible = true
 	else:
@@ -106,35 +115,35 @@ func _process(delta: float) -> void:
 
 #Na função de join, identificar se o jogador conseguiu se conectar. Se não conseguir
 #exibir no log "Falha ao conectar ao servidor"
-func _on_botao_join_pressed() -> void:
-	var resultado = peer.create_client(ADDRESS, PORT)
-	
-	if resultado == OK:
-		multiplayer.multiplayer_peer = peer
-		log.text += "Conectado ao servidor! \n"
-		ui.visible = false
-	else:
-		log.text += "Não foi possivel se conectar! Erro: "+str(resultado)+"\n"
-
-
-func _on_botao_host_pressed() -> void:
-	var resultado = peer.create_server(PORT)
-	
-	if resultado == OK:
-		multiplayer.multiplayer_peer = peer
-		multiplayer.peer_connected.connect(player_conectado)
-		log.text += "Servidor criado na porta "+str(PORT)+"!\n"
-		ui.visible = false
-		#criar personagem
-		adicionar_jogador(multiplayer.get_unique_id())
-	
-	else:
-		log.text += "Erro ao criar servidor! Código do erro: "+str(resultado) +"\n"
-	
+#func _on_botao_join_pressed() -> void:
+	#var resultado = peer.create_client(ADDRESS, PORT)
+	#
+	#if resultado == OK:
+		#multiplayer.multiplayer_peer = peer
+		#log.text += "Conectado ao servidor! \n"
+		#ui.visible = false
+	#else:
+		#log.text += "Não foi possivel se conectar! Erro: "+str(resultado)+"\n"
+#
+#
+#func _on_botao_host_pressed() -> void:
+	#var resultado = peer.create_server(PORT)
+	#if resultado == OK:
+		#multiplayer.multiplayer_peer = peer
+		#multiplayer.peer_connected.connect(player_conectado)
+		#log.text += "Servidor criado na porta "+str(PORT)+"!\n"
+		#ui.visible = false
+		##criar personagem
+		#adicionar_jogador(multiplayer.get_unique_id())
+	#
+	#else:
+		#log.text += "Erro ao criar servidor! Código do erro: "+str(resultado) +"\n"
+	#
 	
 #Na função player_conectado realizar uma chamada rpc, para a função atualizar_log
 #Deve rodar o adicionar_jogador
 #Colocar um label no player para exibir o seu número de id
+@rpc("any_peer","call_remote", "reliable")
 func player_conectado(id_jogador):
 	log.text += "Cliente "+str(id_jogador)+" conectado ao servidor!\n"
 	#Chamada rpc aqui
@@ -144,7 +153,13 @@ func player_conectado(id_jogador):
 	
 func adicionar_jogador(id_jogador):
 	scores[id_jogador] = {"nome": "Anônimo", "kills":0, "deaths":0}
-	var novo_jogador = jogador_scene.instantiate()
+	var novo_jogador = scene_sunny.instantiate()
+	var personagem = Multiplayer_Loader.jogadores[id_jogador]["personagem"]
+	if (personagem == 1):
+		novo_jogador = scene_sunny.instantiate()
+	elif (personagem == 2):
+		novo_jogador = scene_foxy.instantiate()
+		
 	novo_jogador.name = str(id_jogador) 
 	
 	#Lógica de criação deprecada, presente agora dentro do jogador
@@ -159,6 +174,7 @@ func adicionar_jogador(id_jogador):
 	
 	atualizar_leaderboard()
 	audio_player.play()
+	Multiplayer_Loader.criarJogador = 0
 	
 func update_names(id_jogador, nome_jogador):
 	scores[id_jogador]["nome"] = nome_jogador

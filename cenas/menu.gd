@@ -53,3 +53,20 @@ func _on_botao_sunny_pressed() -> void:
 		botaoFoxy.remove_theme_color_override("font_color")
 	animacaoSunny.play("run")
 	animacaoFoxy.play("idle")
+
+
+func _on_host_pressed() -> void:
+	if (personagemSelecionado != 0 and campoNome.text != ""):
+		var resultado = Multiplayer_Loader.criar_servidor(personagemSelecionado, campoNome.text)
+		if (resultado == OK):
+			get_tree().change_scene_to_file("res://game_2.tscn")
+		else:
+			print("ERRO AO CRIAR SERVIDOR!")
+
+func _on_join_pressed() -> void:
+	if (personagemSelecionado != 0 and campoNome.text != ""):
+		var resultado = Multiplayer_Loader.entrar_servidor(personagemSelecionado, campoNome.text)
+		if (resultado == OK):
+			get_tree().change_scene_to_file("res://game_2.tscn")
+		else:
+			print("ERRO AO CRIAR SERVIDOR!")
