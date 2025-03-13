@@ -93,9 +93,13 @@ var jogador
 func _ready() -> void:
 	if (multiplayer.get_unique_id() == 1):
 		adicionar_jogador(1)
+		multiplayer.peer_disconnected.connect(eliminar_jogador)
 		#multiplayer.peer_connected.connect(player_conectado)
 	
-
+func eliminar_jogador(id_jogador):
+	var player = get_node_or_null(str(id_jogador))
+	if (player):
+		player.queue_free()
 
 func _process(delta: float) -> void:
 	if Multiplayer_Loader.criarJogador != 0:
