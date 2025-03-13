@@ -86,12 +86,19 @@ const PORT =  3333
 @onready var campoNome = $UIMultiplayer/Panel/LineEdit
 var scores = {}
 
+@onready var audio_player = $som_ambiente
+var jogador
+
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("ver_scores"):
 		$HUD/LeaderBoard.visible = true
 	else:
 		$HUD/LeaderBoard.visible = false
+		
+	if  jogador:
+		#audio_player.position = jogador.position
+		pass
 
 #Exibir mensagem quando o servidor for criado e exibir mensagens sempre que
 #um usuário se conectar
@@ -134,6 +141,7 @@ func player_conectado(id_jogador):
 	rpc("atualizar_log", log.text)
 	adicionar_jogador(id_jogador)
 	
+	
 func adicionar_jogador(id_jogador):
 	scores[id_jogador] = {"nome": "Anônimo", "kills":0, "deaths":0}
 	var novo_jogador = jogador_scene.instantiate()
@@ -147,9 +155,11 @@ func adicionar_jogador(id_jogador):
 	#novo_jogador.position = Vector2(spawnRandom.position.x, spawnRandom.position.y)
 	
 	add_child(novo_jogador)
+	jogador = novo_jogador
 	
 	atualizar_leaderboard()
-
+	audio_player.play()
+	
 func update_names(id_jogador, nome_jogador):
 	scores[id_jogador]["nome"] = nome_jogador
 	atualizar_leaderboard()

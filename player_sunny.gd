@@ -18,10 +18,10 @@ func _enter_tree() -> void:
 
 		var camera = Camera2D.new()
 		add_child(camera)
-		camera.limit_left = -220
+		camera.limit_left = -289
 		camera.limit_top = 0
-		camera.limit_right = 1152
-		camera.limit_bottom = 648
+		camera.limit_right = 1440
+		camera.limit_bottom = 640
 		camera.zoom = Vector2(1.5, 1.5)
 
 func _ready() -> void:

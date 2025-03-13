@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ssl0ef47gsd0"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_ygf28"]
-[ext_resource type="PackedScene" uid="uid://bjkj3bbloegd2" path="res://player.tscn" id="2_gsnr7"]
-[ext_resource type="Texture2D" uid="uid://djpoavpyba66p" path="res://floor.jpeg" id="3_a24b5"]
+[ext_resource type="PackedScene" uid="uid://bjkj3bbloegd2" path="res://cenas/player.tscn" id="2_gsnr7"]
+[ext_resource type="Texture2D" uid="uid://djpoavpyba66p" path="res://sprites/floor.jpeg" id="3_a24b5"]
 
 [sub_resource type="SystemFont" id="SystemFont_gv2oj"]
 font_weight = 900
